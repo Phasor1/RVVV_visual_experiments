@@ -18,9 +18,16 @@ int text_Y_pos = FONT_HEIGHT;
 
 Scroller scroller;
 PImage logo;
+PShape logo2;
 int LEFT_MARGIN = 20;
 boolean USE_ALPHA_RECTS = false;
 ArrayList<Wave> ws;
+
+int numSquares = 10;
+
+Sphere sp;
+
+Squares sq;
 
 // SETUP /////////////////////////////////////////////////////
 void setup() {
@@ -31,7 +38,10 @@ void setup() {
   ws.add(new Wave(0, 0, 20));
   // ws.add(new Wave(0, 0, 30));
   //fullScreen(1);
-  frameRate(40);
+  frameRate(60);
+  
+  sp = new Sphere();
+  sp.setup();
   
   // start oscP5, an OSC server listening for incoming messages at port 12000
   oscP5 = new OscP5(this, MY_PORT);
@@ -51,7 +61,10 @@ void setup() {
   scroller = new Scroller( height, FONT_HEIGHT);
   
   logo = loadImage("RVVV_logo_white_alpha.png");
+  logo2 = loadShape("logo.svg");
   //logo = loadImage("RVVV_logo_white_stroke_alpha.png");
+  
+  sq = new Squares(numSquares);
 }
 
 
@@ -62,11 +75,15 @@ void draw() {
   background(0);
   
   imageMode(CENTER);
-  tint(120, 30);
-  image( logo, width*0.5, height*0.5);
+  // tint(120, 30);
+  //image( logo, width*0.5, height*0.5);
+  shapeMode(CENTER);
+  shape(logo2, width/2, height/2);
   ws.get(0).draw();
   ws.get(1).draw();
   ws.get(2).draw();
+  sp.draw();
+  // sq.draw();
   // ws.get(3).draw();
   pushMatrix();
   //translate( 0, (-1)*frameCount );
@@ -153,7 +170,7 @@ void oscEvent(OscMessage theOscMessage) {
 void mousePressed(){
   // ws.sounds = (Sound[])append(ws.sounds, new Sound(10, 200));
   Wave w = ws.get(int(random(3)));  
-  w.sounds.add(new Sound(4, 50, int(random(40))+10));
+  w.sounds.add(new Sound(4, 200, int(random(10, 100))));
   switch(w.currentRot){
     case 'x':
       w.currentRot = 'y';
@@ -165,6 +182,7 @@ void mousePressed(){
       w.currentRot = 'x';
       break;
   }
+  w.fillColor = color(int(random(50, 255)), int(random(40, 255)), int(random(50, 255)));
   //ws.sounds.add(new Sound(3, 500));
 }
 

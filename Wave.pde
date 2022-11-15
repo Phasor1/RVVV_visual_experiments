@@ -17,11 +17,13 @@ class Wave{
 	float amp = 0;
 	ArrayList<Sound> sounds;
   int prevNumSound = 0;
+  color fillColor;
 	Wave(float x, float y, float z){
 		wPosX = x;
 		wPosY = y;
 		wPosZ = z;
 		sounds = new ArrayList<Sound>();
+    fillColor = color(150, 150, 150);
 	}
   void manageRotationIndex() {
     switch(currentRot) {
@@ -58,7 +60,7 @@ class Wave{
 		translate((-width/2), (-height/2));
 		noFill();
 		strokeWeight(2);
-		stroke(255);
+		stroke(fillColor);
 		// amp = amp != 0 ? (amp < 0 ? 0 : amp - (amp / (200 / 50))) : 0;
 		for(int s = 0; s < sounds.size(); s++){
 			Sound snd = sounds.get(s);

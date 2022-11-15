@@ -15,7 +15,7 @@ History.start;
 History.forwardFunc_({
 	|evaluated_code|
 	//evaluated_code.postln;
-	~history_collector.sendMsg( "/nicola/history", evaluated_code );
+	~history_collector.sendMsg( "/davide/history", evaluated_code );
 });
 )
 
