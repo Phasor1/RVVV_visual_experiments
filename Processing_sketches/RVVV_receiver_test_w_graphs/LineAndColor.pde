@@ -3,6 +3,7 @@ class LineAndColor {
   int r, g, b;
   PFont font;
   
+  // CONSTRUCTOR //////////////////////////////////////////////////////////////////////////
   LineAndColor( String _line, PFont _font, int _r, int _g, int _b ) {
     line = _line;
     font = _font;
