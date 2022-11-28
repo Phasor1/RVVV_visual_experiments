@@ -35,12 +35,38 @@ class Sphere {
     }
   }
   
-  void draw() {
+  void drawLines() {
     push();
-    translate(width/2 - r/2, height/2 - r/2);
+    noFill();
+    strokeWeight(2);
+    stroke(250, 200, 200);
+    translate(width/2, height/2);
     rotateX(angleX);
     rotateY(angleY);
-    translate(-(width/2 - r/2), -(height/2 - r/2));
+    translate(-(width/2), -(height/2));
+    for(int i = 0; i < total; i++) {
+      for (int j = 0; j < total + 1; j++) {
+        ArrayList<PVector> c = globe.get(i);
+        PVector v1 = c.get(j);
+        //translate(width/2, height/2);
+        line(v1.x + width/2,
+          v1.y + height/2, 
+          v1.z, 
+          v1.x + width/2 + sin(map(i, 0, total, TWO_PI, 0))*30, 
+          v1.y + height/2 + sin(map(i, 0, total, TWO_PI, 0))*30, 
+          v1.z + sin(map(i, 0, total, 0, TWO_PI))*30
+        );
+      }
+    }
+    pop();
+  }
+  
+  void draw() {
+    push();
+    translate(width/2, height/2);
+    rotateX(angleX);
+    rotateY(angleY);
+    translate(-(width/2), -(height/2));
     noFill();
     strokeWeight(2);
     stroke(200);
@@ -52,16 +78,12 @@ class Sphere {
         // vertex(v1.x, v1.y, v1.z);
         c = globe.get(i + 1);
         PVector v2 = c.get(j);
-        vertex(width/2 + v1.x, height/2 + v1.y, v1.z);
+        vertex(width/2 + v1.x , height/2 + v1.y, v1.z);
       }
     }
     endShape();
-    //for(int z = 0; z < wave.size(); z++) {
-      //ArrayList<PVector> c = globe.get(0);
-      //PVector v1 = c.get(z);
-      //line(v1.x, v1.y, v1.z, v1.x, v1.y, v1.z + 100);
-    //}
     pop();
+    //drawLines();
     angleX += 0.005;
     angleY += 0.006;
   }

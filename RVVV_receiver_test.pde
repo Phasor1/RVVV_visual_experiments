@@ -61,7 +61,7 @@ void setup() {
   scroller = new Scroller( height, FONT_HEIGHT);
   
   logo = loadImage("RVVV_logo_white_alpha.png");
-  logo2 = loadShape("logo.svg");
+  logo2 = loadShape("logo_black.svg");
   //logo = loadImage("RVVV_logo_white_stroke_alpha.png");
   
   sq = new Squares(numSquares);
