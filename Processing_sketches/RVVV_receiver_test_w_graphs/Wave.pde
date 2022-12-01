@@ -55,7 +55,7 @@ class Wave{
 	void draw(){
 		push();
 		rotInd = rotInd > 2*PI ? rotInd%(2*PI) : rotInd + 0.005;
-		sinInd = sinInd > 2*PI ? sinInd%(2*PI) : sinInd + 1000;
+		sinInd = sinInd > 2*PI ? sinInd%(2*PI) : sinInd + 0.25;
 		translate((width/2), (height/2));
 		manageRotationIndex();
 		translate((-width/2), (-height/2));
@@ -83,7 +83,7 @@ class Wave{
 
         if(generalAmplitude > 0){
                     offz += generalAmplitude*sin(sinInd + map(y, 0, n_els, 0, (PI))) + 
-          generalAmplitude*sin(sinInd + map(x, 0, n_els, 0, (2*PI)*3) + map(y, 0, n_els, 0, (2*PI)*3));
+          generalAmplitude*cos(sinInd + map(x, 0, n_els, 0, (2*PI)*3) + map(y, 0, n_els, 0, (2*PI)*3));
         }
 				// float localSin1 = amp*sin(sinInd + map(y, 0, n_els, 0, (2*PI)*30));
 				// float localSin2 = amp*sin(sinInd + map(y, 0, n_els, 0, (2*PI)*2));
