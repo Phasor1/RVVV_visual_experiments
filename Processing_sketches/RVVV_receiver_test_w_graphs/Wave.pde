@@ -18,6 +18,7 @@ class Wave{
 	ArrayList<Sound> sounds;
   int prevNumSound = 0;
   color fillColor;
+  float generalAmplitude = 0;
 	Wave(float x, float y, float z){
 		wPosX = x;
 		wPosY = y;
@@ -79,6 +80,11 @@ class Wave{
 					offz += snd.currAmp*sin(sinInd + map(y, 0, n_els, 0, (PI))) + 
 					snd.currAmp*sin(sinInd + map(x, 0, n_els, 0, (2*PI)*snd.freq) + map(y, 0, n_els, 0, (2*PI)*snd.freq));
 				}
+
+        if(generalAmplitude > 0){
+                    offz += generalAmplitude*sin(sinInd + map(y, 0, n_els, 0, (PI))) + 
+          generalAmplitude*sin(sinInd + map(x, 0, n_els, 0, (2*PI)*3) + map(y, 0, n_els, 0, (2*PI)*3));
+        }
 				// float localSin1 = amp*sin(sinInd + map(y, 0, n_els, 0, (2*PI)*30));
 				// float localSin2 = amp*sin(sinInd + map(y, 0, n_els, 0, (2*PI)*2));
 				// float localSin3 = amp*sin(sinInd + map(x, 0, n_els, 0, (2*PI)*30));
